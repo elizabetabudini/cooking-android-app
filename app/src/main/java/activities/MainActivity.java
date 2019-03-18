@@ -2,10 +2,7 @@ package activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +14,8 @@ import android.view.MenuItem;
 
 import com.cookingtime.cookingtime.R;
 
+import fragments.AboutFragment;
+import fragments.ContactsFragment;
 import fragments.DashboardFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -110,6 +109,44 @@ public class MainActivity extends AppCompatActivity
                 }
                 // Display the LogInFragment title on the ActionBar
                 toolbar.setTitle(R.string.title_dashboard_fragment);
+                break;
+
+            case R.id.mAboutNavigation:
+                tag = "about";
+                fragment = getSupportFragmentManager().findFragmentByTag(tag);
+                if (fragment == null) {
+                    fragment = AboutFragment.newInstance();
+                }
+                // Display the LogInFragment title on the ActionBar
+                toolbar.setTitle(R.string.title_about_fragment);
+                break;
+
+            case R.id.mContacsNavigation:
+                tag = "contacts";
+                fragment = getSupportFragmentManager().findFragmentByTag(tag);
+                if (fragment == null) {
+                    fragment = ContactsFragment.newInstance();
+                }
+                // Display the LogInFragment title on the ActionBar
+                toolbar.setTitle(R.string.title_contacts_fragment);
+                break;
+            case R.id.mDonateNavigation:
+                tag = "donate";
+                break;
+            case R.id.mFavouriteNavigation:
+                tag = "favourite";
+                break;
+            case R.id.mGroupsNavigation:
+                tag = "groups";
+                break;
+            case R.id.mSearchNavigation:
+                tag = "search";
+                break;
+            case R.id.mSettingsNavigation:
+                tag = "settings";
+                break;
+            case R.id.mTwitterNavigation:
+                tag = "twitter";
                 break;
 
         }
