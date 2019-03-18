@@ -5,33 +5,45 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/mSearchNavigation"
+            android:icon="@android:drawable/ic_search_category_default"
+            android:title="@string/title_search_fragment" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/mDashboardNavigation"
+            android:icon="?attr/homeAsUpIndicator"
+            android:title="@string/title_dashboard_fragment" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/mGroupsNavigation"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/title_groups_fragment" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/mContacsNavigation"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/title_contacts_fragment" />
+        <item
+            android:id="@+id/mFavouriteNavigation"
+            android:icon="@android:drawable/btn_star"
+            android:title="@string/title_favourite_fragment" />
+        <item
+            android:id="@+id/mSettingsNavigation"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/title_settings_fragment" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/mTwitterNavigation"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="@string/title_twitter_fragment" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/mDonateNavigation"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="@string/title_donate_fragment" />
+            <item
+                android:id="@+id/mAboutNavigation"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/title_about_fragment" />
         </menu>
     </item>
 

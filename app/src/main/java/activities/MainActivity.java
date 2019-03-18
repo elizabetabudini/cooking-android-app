@@ -1,8 +1,10 @@
-package com.cookingtime.cookingtime;
+package activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,26 +15,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.cookingtime.cookingtime.R;
+
+import fragments.DashboardFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Toolbar toolbar;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -40,6 +48,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // If the activity is being created for the first time, then display the QuotationFragment,
+        // otherwise let the system recreate whatever was being displayed previously
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frameLayout, new DashboardFragment())
+                    .commit();
+
+            ((NavigationView) findViewById(R.id.nav_view)).setCheckedItem(R.id.mDashboardNavigation);
+        }
     }
 
     @Override
@@ -76,26 +95,36 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        Fragment fragment = null;
+        String tag = null;
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        // Determine the action to take place according to the Id of the action selected
+        switch (item.getItemId()) {
+            case R.id.mDashboardNavigation:
+                tag = "dashboard";
+                fragment = getSupportFragmentManager().findFragmentByTag(tag);
+                if (fragment == null) {
+                    fragment = DashboardFragment.newInstance("username");
+                }
+                // Display the LogInFragment title on the ActionBar
+                toolbar.setTitle(R.string.title_dashboard_fragment);
+                break;
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // Replace the existing Fragment by the new one
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, fragment, tag)
+                .commit();
+
+        item.setChecked(true);
+
+        // Close the drawer
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }
