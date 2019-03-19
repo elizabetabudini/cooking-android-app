@@ -32,10 +32,9 @@ public class FavouriteFragment extends Fragment {
      */
     public static FavouriteFragment newInstance() {
         // Create a new instance of the Fragment
-        FavouriteFragment fragment = new FavouriteFragment();
-        return fragment;
+        return new FavouriteFragment();
     }
-    
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +48,38 @@ public class FavouriteFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.favouriteRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter = new RecipeRecyclerAdapter(new ArrayList<Recipe>());
+        adapter = new RecipeRecyclerAdapter(getMockRecipes(), getActivity());
         recyclerView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    private ArrayList<Recipe> getMockRecipes() {
+        ArrayList<Recipe> data = new ArrayList<>();
+        Recipe recipe = new Recipe();
+        recipe.setName("Meat Loaf Dinner");
+        recipe.setId(384149);
+        recipe.setUrl("https://spoonacular.com/recipes/meat-loaf-dinner-384149");
+        data.add(recipe);
+
+        recipe = new Recipe();
+        recipe.setName("Blueberry Loaf");
+        recipe.setId(635486);
+        recipe.setUrl("https://spoonacular.com/recipes/blueberry-loaf-635486");
+        data.add(recipe);
+
+        recipe = new Recipe();
+        recipe.setName("Meat Loaf Dinner");
+        recipe.setId(384149);
+        recipe.setUrl("https://spoonacular.com/recipes/meat-loaf-dinner-384149");
+        data.add(recipe);
+
+        recipe = new Recipe();
+        recipe.setName("Blueberry Loaf");
+        recipe.setId(635486);
+        recipe.setUrl("https://spoonacular.com/recipes/blueberry-loaf-635486");
+        data.add(recipe);
+
+        return data;
     }
 }

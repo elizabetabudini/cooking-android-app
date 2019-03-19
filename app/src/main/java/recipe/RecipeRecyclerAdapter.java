@@ -1,5 +1,6 @@
 package recipe;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,9 +26,11 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeRecyclerAd
     }
 
     private ArrayList<Recipe> data;
+    private Context context;
 
-    public RecipeRecyclerAdapter(ArrayList<Recipe> data) {
+    public RecipeRecyclerAdapter(ArrayList<Recipe> data, Context context) {
         this.data = data;
+        this.context = context;
     }
 
     @NonNull
@@ -41,7 +44,10 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.name.setText(data.get(position).getName());
-        holder.image.setImageResource(data.get(position).getId()); //TODO set real image value
+        holder.image.setImageDrawable(
+                context.getResources().getDrawable(context.getResources()
+                        .getIdentifier("drawable/recipe_test_image_" + data.get(position).getId()
+                        , "drawable", context.getPackageName())));
     }
 
     @Override

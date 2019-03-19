@@ -14,7 +14,7 @@
     <string name="title_groups_fragment">Groups</string>
     <string name="title_contacts_fragment">Contacts</string>
     <string name="title_search_fragment">Search</string>
-    <string name="title_favourite_fragment">Favorite</string>
+    <string name="title_favourite_fragment">Favourites</string>
     <string name="title_settings_fragment">Settings</string>
     <string name="title_twitter_fragment">Twitter</string>
     <string name="title_donate_fragment">Donate</string>
