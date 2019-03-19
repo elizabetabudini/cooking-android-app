@@ -17,6 +17,7 @@ import com.cookingtime.cookingtime.R;
 import fragments.AboutFragment;
 import fragments.ContactsFragment;
 import fragments.DashboardFragment;
+import fragments.FavouriteFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -135,6 +136,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.mFavouriteNavigation:
                 tag = "favourite";
+                fragment = getSupportFragmentManager().findFragmentByTag(tag);
+                if (fragment == null) {
+                    fragment = FavouriteFragment.newInstance();
+                }
+                // Display the LogInFragment title on the ActionBar
+                toolbar.setTitle(R.string.title_favourite_fragment);
                 break;
             case R.id.mGroupsNavigation:
                 tag = "groups";
